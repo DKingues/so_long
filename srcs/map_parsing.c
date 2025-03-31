@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 18:56:12 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/03/28 18:15:00 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:55:18 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,7 @@ bool	map_parsing(char **map, t_game *game)
 		return (ft_printf("ERROR: Map is not rectangular.\n"), false);
 	if (map_access(map, game) == false)
 		return (ft_printf("ERROR: Exit/Collectibles not accessible.\n"), false);
+	if(game->map.height * 64 > 1080 || game->map.width * 64 > 1920)
+		return (ft_printf("ERROR: Map is too big."), false);
 	return (true);
 }

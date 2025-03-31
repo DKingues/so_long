@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 18:56:24 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/03/28 18:16:33 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/03/31 18:58:34 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@
 
 typedef struct s_map
 {
-	int	e;
-	int	c;
-	int	p;
-	int	height;
-	int	width;
+	char	**map;
+	int		e;
+	int		c;
+	int		p;
+	int		height;
+	int		width;
 }	t_map;
 
 typedef struct s_data
@@ -37,17 +38,22 @@ typedef struct s_data
 	int		height;
 	int		x;
 	int		y;
-	
+	int 	endian;
+	int     bits_per_pixel;
+    int     line_length;	
 }	t_data;
 
 typedef struct s_game
 {
+	void 	*mlx;
+	void	*win;
 	t_map	map;
 	t_data	player;
 	t_data	collect;
 	t_data	exit;
 	t_data	floor;
 	t_data	walls;
+	t_data	canvas;
 }	t_game;
 
 // MAP PARSING (map_parsing.c)
@@ -73,5 +79,13 @@ void	flood_fill(char **map, int y, int x, t_game *game);
 // MAP ACCESS AUX (map_access_aux.c)
 
 char	**get_full_map(char *map);
+
+// IMAGE LOAD (game_image.c)
+
+t_data 	load_image(char *path, t_game *game);
+void	ins_map(t_game *game);
+void	draw_img(t_data src, t_data dst, int sx, int sy);
+int		my_mlx_pixel_get(t_data *data, int x, int y);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

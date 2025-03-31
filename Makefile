@@ -6,7 +6,7 @@
 #    By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/12 18:57:12 by dicosta-          #+#    #+#              #
-#    Updated: 2025/03/27 17:44:49 by dicosta-         ###   ########.fr        #
+#    Updated: 2025/03/31 16:50:08 by dicosta-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ PRINTF = ft_printf/libftprintf.a
 MLX = minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm -lz
 
 SRCS = srcs/map_parsing.c srcs/main.c srcs/map_parsing_aux.c srcs/map_access.c \
-		srcs/map_access_aux.c
+		srcs/game_image.c
 
 # Sources and Objects
 
@@ -66,7 +66,6 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	cd ft_printf && make fclean
-	rm srcs/a.out
 
 re: fclean all
 
