@@ -6,13 +6,13 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 19:25:03 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/03/27 18:26:23 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:22:08 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// Checks horizontal borders
+// Checks horizontal borders / X border
 
 bool	x_border_check(char *line)
 {
@@ -27,7 +27,7 @@ bool	x_border_check(char *line)
 	}
 	return (true);
 }
-// Checks vertical borders
+// Checks vertical borders / Y border
 
 bool	y_border_check(char *line)
 {
@@ -41,7 +41,7 @@ bool	y_border_check(char *line)
 	else
 		return (false);
 }
-// Gets last line of array
+// Gets last line of array / height
 
 int	last_line(char *map)
 {
@@ -60,7 +60,7 @@ int	last_line(char *map)
 	}
 	return (free(line), close(fd), i);
 }
-// Gets string lenght
+// Gets string lenght / width
 
 int	line_len(char *line)
 {
@@ -70,4 +70,14 @@ int	line_len(char *line)
 	while (line[i] && line[i] != '\n')
 		i++;
 	return (i);
+}
+
+void big_free(t_game *game)
+{
+	int y;
+
+	y = 0;
+	while (game->map.map[y])
+		free(game->map.map[y++]);
+	free(game->map.map);
 }

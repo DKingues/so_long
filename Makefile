@@ -6,7 +6,7 @@
 #    By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/12 18:57:12 by dicosta-          #+#    #+#              #
-#    Updated: 2025/03/31 16:50:08 by dicosta-         ###   ########.fr        #
+#    Updated: 2025/04/09 18:21:29 by dicosta-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = so_long
 
 CC = cc
 
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 FT_PRINTF = cd ft_printf && make
 
@@ -29,12 +29,14 @@ PRINTF = ft_printf/libftprintf.a
 MLX = minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm -lz
 
 SRCS = srcs/map_parsing.c srcs/main.c srcs/map_parsing_aux.c srcs/map_access.c \
-		srcs/game_image.c
+		srcs/draw_image.c srcs/game.c srcs/keys.c
 
 # Sources and Objects
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:%.c=%.o)
 
+%.o : %.c
+	$(CC) $(FLAGS) -c -o $@ $<
 # Messages
 
 COMP_START = echo "\nCompilation starting...\n"
